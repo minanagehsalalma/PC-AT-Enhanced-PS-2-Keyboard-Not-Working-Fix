@@ -1,0 +1,26 @@
+Windows Registry Editor Version 5.00
+
+; Ensure core keyboard drivers start
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\i8042prt]
+"Start"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\kbdclass]
+"Start"=dword:00000001
+
+; Ensure USB/I2C keyboard paths are enabled (manual start)
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\kbdhid]
+"Start"=dword:00000003
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HidUsb]
+"Start"=dword:00000003
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HidClass]
+"Start"=dword:00000003
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\i2cHid]
+"Start"=dword:00000003
+
+; Keyboard class filters: keep only the Microsoft filter (kbdclass)
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E96B-E325-11CE-BFC1-08002BE10318}]
+"UpperFilters"=hex(7):6b,00,62,00,64,00,63,00,6c,00,61,00,73,00,73,00,00,00,00,00
+"LowerFilters"=-
